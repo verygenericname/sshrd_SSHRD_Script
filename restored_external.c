@@ -36,9 +36,7 @@ IOUSBDeviceDescriptionRef IOUSBDeviceDescriptionCreateWithType(CFAllocatorRef, C
 char bootargs[2048];
 size_t len = sizeof(bootargs) - 1;
 
-io_service_t
-get_service(const char *name, unsigned int retry)
-{
+io_service_t get_service(const char *name, unsigned int retry) {
     io_service_t service;
     CFDictionaryRef match = IOServiceMatching(name);
 
@@ -57,9 +55,7 @@ get_service(const char *name, unsigned int retry)
 }
 
 /* reversed from restored_external */
-int
-init_usb(void)
-{
+int init_usb(void) {
     int i;
     CFNumberRef n;
     io_service_t service;
@@ -106,9 +102,7 @@ init_usb(void)
 char *execve_params[] = { "micro_inetd", "22", "/usr/local/bin/dropbear", "-i", NULL };
 
 /* chopped from https://code.google.com/p/iphone-dataprotection/ */
-int
-main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     printf("Starting ramdisk tool\n");
     printf("Compiled " __DATE__ " " __TIME__ "\n");
 
@@ -131,79 +125,81 @@ main(int argc, char *argv[])
         if (strnstr(bootargs, "TrollStore", len)) {
             printf("waiting for 3 seconds to prevent issues\n");
             sleep(3);
+            
             char mount_filesystems[50];
             char troll_install[50];
             char reboot[50];
-            strcpy( mount_filesystems, "/bin/bash /usr/bin/mount_filesystems" );
-            strcpy( reboot, "/sbin/reboot" );
+            strcpy(mount_filesystems, "/bin/bash /usr/bin/mount_filesystems");
+            strcpy(reboot, "/sbin/reboot");
+            
             if (strnstr(bootargs, "TrollStore=Tips", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Tips" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Tips");
             }
             if (strnstr(bootargs, "TrollStore=Books", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Books" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Books");
             }
             if (strnstr(bootargs, "TrollStore=VoiceMemos", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller VoiceMemos" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller VoiceMemos");
             }
             if (strnstr(bootargs, "TrollStore=Weather", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Weather" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Weather");
             }
             if (strnstr(bootargs, "TrollStore=Files", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Files" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Files");
             }
             if (strnstr(bootargs, "TrollStore=Mail", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Mail" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Mail");
             }
             if (strnstr(bootargs, "TrollStore=Home", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Home" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Home");
             }
             if (strnstr(bootargs, "TrollStore=Calculator", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Calculator" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Calculator");
             }
             if (strnstr(bootargs, "TrollStore=Stocks", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Stocks" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Stocks");
             }
             if (strnstr(bootargs, "TrollStore=Maps", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Maps" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Maps");
             }
             if (strnstr(bootargs, "TrollStore=Measure", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Measure" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Measure");
             }
             if (strnstr(bootargs, "TrollStore=Translate", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Translate" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Translate");
             }
             if (strnstr(bootargs, "TrollStore=FaceTime", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller FaceTime" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller FaceTime");
             }
             if (strnstr(bootargs, "TrollStore=Contacts", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Contacts" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Contacts");
             }
             if (strnstr(bootargs, "TrollStore=Magnifier", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Magnifier" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Magnifier");
             }
             if (strnstr(bootargs, "TrollStore=iTunes", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller iTunes" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller iTunes");
             }
             if (strnstr(bootargs, "TrollStore=Shortcuts", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Shortcuts" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Shortcuts");
             }
             if (strnstr(bootargs, "TrollStore=TV", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller TV" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller TV");
             }
             if (strnstr(bootargs, "TrollStore=Music", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Music" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Music");
             }
             if (strnstr(bootargs, "TrollStore=Notes", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Notes" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Notes");
             }
             if (strnstr(bootargs, "TrollStore=Calendar", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Calendar" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Calendar");
             }
             if (strnstr(bootargs, "TrollStore=Reminders", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Reminders" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Reminders");
             }
             if (strnstr(bootargs, "TrollStore=Podcasts", len)) {
-            strcpy( troll_install, "/bin/bash /usr/bin/trollstoreinstaller Podcasts" );
+                strcpy(troll_install, "/bin/bash /usr/bin/trollstoreinstaller Podcasts");
             }
             printf("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\n");
             printf("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\n");
@@ -243,12 +239,14 @@ main(int argc, char *argv[])
             printf("SSHRD_Script by Nathan (verygenericname)\n");
             system(mount_filesystems);
             system(troll_install);
+            
             printf("hopefully done, rebooting in 5 seconds...\n");
             sleep(5);
             system(reboot);
             return 0;
-            }
+        }
     }
+    
     printf("llllllllllllllllllllllllllllllllllllllllllllllllll\n");
     printf("llllllllllllllllllllllllllllllllllllllllllllllllll\n");
     printf("lllllc:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:clllll\n");
